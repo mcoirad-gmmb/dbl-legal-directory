@@ -44,7 +44,7 @@ class Slide extends Component {
     const {
       imageSrc,
       name,
-      link,
+      link_url,
       phone_number,
       email,
       description,
@@ -55,10 +55,12 @@ class Slide extends Component {
     return (
       <div className={classNames('bw-slide', kebabCase(name))}>
         {imageSrc && (
-          <div
-            className="bw-slide__image"
-            style={{ backgroundImage: `url('${imageSrc}')` }}
-          />
+          <a href={link_url}>
+            <div
+              className="bw-slide__image"
+              style={{ backgroundImage: `url('${imageSrc}')` }}
+            />
+          </a>
         )}
         {isVisible && (
           <div
@@ -74,16 +76,10 @@ class Slide extends Component {
             >
               {({ measureRef }) => (
                 <div ref={measureRef} className="bw-slide__name">
-                  <h3>{name}</h3>
+                  <h3>
+                    <a href={link_url}>{name}</a>
+                  </h3>
                   <div className="bw-slide__donations">
-                    {link && (
-                      <div className="bw-slide__donation">
-                        Website:{' '}
-                        <span className="bw-slide__donation-value">
-                          <a href={link}>{link}</a>
-                        </span>
-                      </div>
-                    )}
                     {phone_number && (
                       <div className="bw-slide__donation">
                         Phone Number:{' '}
@@ -384,10 +380,11 @@ class DonorSlider extends Component {
               key={donor['Name']}
               imageSrc={getImage(donor['Name'])}
               name={donor['Name']}
-              directDonation={donor['Donations directly to Buffy']}
-              pacDonation={donor['Donations to Buffy-supporting PACs']}
+              link_url={donor['Link']}
+              phone_number={donor['Phone Number']}
+              email={donor['Email']}
               title={donor['Description hed']}
-              description={donor['Blurb']}
+              description={donor['Desc']}
               categories={donor['Category']}
               index={index}
               currentSlide={currentSlide}
