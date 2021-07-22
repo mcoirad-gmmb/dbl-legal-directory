@@ -44,8 +44,9 @@ class Slide extends Component {
     const {
       imageSrc,
       name,
-      directDonation,
-      pacDonation,
+      link,
+      phone_number,
+      email,
       description,
       categories,
       isVisible
@@ -75,19 +76,27 @@ class Slide extends Component {
                 <div ref={measureRef} className="bw-slide__name">
                   <h3>{name}</h3>
                   <div className="bw-slide__donations">
-                    {directDonation && (
+                    {link && (
                       <div className="bw-slide__donation">
-                        Direct:{' '}
+                        Website:{' '}
                         <span className="bw-slide__donation-value">
-                          {directDonation}
+                          <a href={link}>{link}</a>
                         </span>
                       </div>
                     )}
-                    {pacDonation && (
+                    {phone_number && (
                       <div className="bw-slide__donation">
-                        PAC:{' '}
+                        Phone Number:{' '}
                         <span className="bw-slide__donation-value">
-                          {pacDonation}
+                          {phone_number}
+                        </span>
+                      </div>
+                    )}
+                    {email && (
+                      <div className="bw-slide__donation">
+                        Email:{' '}
+                        <span className="bw-slide__donation-value">
+                          {email}
                         </span>
                       </div>
                     )}
